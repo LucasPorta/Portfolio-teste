@@ -8,28 +8,54 @@ const ContactSection = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="max-w-3xl"
       >
         <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-body mb-12">
           Get in touch
         </p>
-        <a
+
+        <motion.a
           href="mailto:hello@designer.com"
           className="font-display text-3xl md:text-5xl lg:text-6xl font-light group inline-flex items-center gap-4 hover:text-primary transition-colors duration-300"
+          whileHover={{ x: 8 }}
+          transition={{ type: "spring", stiffness: 300 }}
         >
           hello@designer.com
-          <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </a>
+          <motion.span
+            initial={{ opacity: 0, x: -10 }}
+            whileHover={{ opacity: 1, x: 0 }}
+          >
+            <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </motion.span>
+        </motion.a>
       </motion.div>
 
-      <div className="mt-32 flex items-center justify-between text-xs text-muted-foreground font-body">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3 }}
+        className="mt-32 flex items-center justify-between text-xs text-muted-foreground font-body"
+      >
         <span>© 2025</span>
         <div className="flex gap-8">
-          <a href="#" className="hover:text-foreground transition-colors">Dribbble</a>
-          <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-foreground transition-colors">Twitter</a>
+          {["Dribbble", "LinkedIn", "Twitter"].map((link, i) => (
+            <motion.a
+              key={link}
+              href="#"
+              className="hover:text-foreground transition-colors relative"
+              whileHover={{ y: -2 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 + i * 0.1 }}
+            >
+              {link}
+            </motion.a>
+          ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
