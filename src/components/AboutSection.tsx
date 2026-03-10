@@ -34,7 +34,7 @@ const AboutSection = () => {
             transition={{ delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-xl md:text-2xl font-light leading-relaxed"
           >
-            I design interfaces that feel intuitive and look unforgettable. Currently based in Berlin.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Currently based in Berlin.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -43,7 +43,7 @@ const AboutSection = () => {
             transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="text-muted-foreground font-body leading-relaxed text-sm"
           >
-            5+ years shaping products for startups and agencies. I believe great design is invisible — it just works.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
           </motion.p>
 
           {/* Animated skill tags */}

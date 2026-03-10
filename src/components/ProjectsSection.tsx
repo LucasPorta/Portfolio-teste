@@ -3,10 +3,10 @@ import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 
 const projects = [
-  { title: "Finova", category: "Mobile App", year: "2025" },
-  { title: "Arclight", category: "Web Platform", year: "2024" },
-  { title: "Pulse Health", category: "Dashboard", year: "2024" },
-  { title: "Nomad", category: "Brand Identity", year: "2023" },
+  { title: "Finova", category: "Mobile App", year: "2025", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+  { title: "Arclight", category: "Web Platform", year: "2024", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco." },
+  { title: "Pulse Health", category: "Dashboard", year: "2024", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit." },
+  { title: "Nomad", category: "Brand Identity", year: "2023", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa." },
 ];
 
 const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: number }) => {
@@ -21,9 +21,12 @@ const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: nu
     >
       <div className="flex items-baseline gap-4 md:gap-8">
         <span className="text-muted-foreground text-xs font-body tabular-nums">0{index + 1}</span>
-        <h3 className="font-display text-2xl md:text-4xl lg:text-5xl font-light group-hover:text-primary transition-colors duration-300">
-          {project.title}
-        </h3>
+        <div>
+          <h3 className="font-display text-2xl md:text-4xl lg:text-5xl font-light group-hover:text-primary transition-colors duration-300">
+            {project.title}
+          </h3>
+          <p className="text-muted-foreground text-xs md:text-sm font-body mt-2 max-w-md leading-relaxed">{project.description}</p>
+        </div>
       </div>
       <div className="flex items-center gap-6 md:gap-12">
         <span className="text-muted-foreground text-sm font-body hidden md:block">{project.category}</span>
