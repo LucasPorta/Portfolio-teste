@@ -1,55 +1,30 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Plus, Minus } from "lucide-react";
 import { useRef, useState } from "react";
+import { useLanguage, t } from "@/contexts/LanguageContext";
 
-const projects = [
-  {
-    title: "Finova",
-    category: "Mobile App",
-    year: "2025",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    role: "Lead Designer",
-    tools: ["Figma", "Protopie", "After Effects"],
-  },
-  {
-    title: "Arclight",
-    category: "Web Platform",
-    year: "2024",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    details: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    role: "UX/UI Designer",
-    tools: ["Figma", "Framer", "Notion"],
-  },
-  {
-    title: "Pulse Health",
-    category: "Dashboard",
-    year: "2024",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit.",
-    details: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.",
-    role: "Product Designer",
-    tools: ["Sketch", "Principle", "Miro"],
-  },
-  {
-    title: "Nomad",
-    category: "Brand Identity",
-    year: "2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa.",
-    details: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-    role: "Brand Designer",
-    tools: ["Illustrator", "Figma", "Photoshop"],
-  },
+const projectKeys = [1, 2, 3, 4];
+const projectTools = [
+  ["Figma", "Protopie", "After Effects"],
+  ["Figma", "Framer", "Notion"],
+  ["Sketch", "Principle", "Miro"],
+  ["Illustrator", "Figma", "Photoshop"],
 ];
+const projectYears = ["2025", "2024", "2024", "2023"];
 
-const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: number }) => {
+const ProjectRow = ({ projectIndex, index }: { projectIndex: number; index: number }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { lang } = useLanguage();
+  const k = projectIndex;
+  const rowRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: rowRef, offset: ["start end", "start 0.7"] });
+  const x = useTransform(scrollYProgress, [0, 1], [-60, 0]);
+  const rowOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -40 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] as const }}
+      ref={rowRef}
+      style={{ x, opacity: rowOpacity }}
       className="border-t border-border"
     >
       <div
@@ -58,13 +33,17 @@ const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: nu
       >
         <div className="flex items-baseline gap-4 md:gap-8">
           <span className="text-muted-foreground text-xs font-body tabular-nums">0{index + 1}</span>
-          <h3 className="font-display text-2xl md:text-4xl lg:text-5xl font-light group-hover:text-primary transition-colors duration-300">
-            {project.title}
-          </h3>
+          <motion.h3
+            className="font-display text-2xl md:text-4xl lg:text-5xl font-light group-hover:text-primary transition-colors duration-300"
+            whileHover={{ x: 12 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            {t(lang, `project.${k}.title`)}
+          </motion.h3>
         </div>
         <div className="flex items-center gap-6 md:gap-12">
-          <span className="text-muted-foreground text-sm font-body hidden md:block">{project.category}</span>
-          <span className="text-muted-foreground text-sm font-body">{project.year}</span>
+          <span className="text-muted-foreground text-sm font-body hidden md:block">{t(lang, `project.${k}.category`)}</span>
+          <span className="text-muted-foreground text-sm font-body">{projectYears[index]}</span>
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
@@ -97,7 +76,7 @@ const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: nu
                   className="md:col-span-2"
                 >
                   <p className="text-foreground/80 font-body text-sm leading-relaxed">
-                    {project.details}
+                    {t(lang, `project.${k}.details`)}
                   </p>
                 </motion.div>
 
@@ -108,13 +87,13 @@ const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: nu
                   className="space-y-6"
                 >
                   <div>
-                    <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground font-body mb-2">Role</p>
-                    <p className="text-sm font-body text-foreground/80">{project.role}</p>
+                    <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground font-body mb-2">{t(lang, "projects.role")}</p>
+                    <p className="text-sm font-body text-foreground/80">{t(lang, `project.${k}.role`)}</p>
                   </div>
                   <div>
-                    <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground font-body mb-2">Tools</p>
+                    <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground font-body mb-2">{t(lang, "projects.tools")}</p>
                     <div className="flex flex-wrap gap-2">
-                      {project.tools.map((tool) => (
+                      {projectTools[index].map((tool) => (
                         <span
                           key={tool}
                           className="px-3 py-1 border border-border rounded-full text-xs font-body text-muted-foreground"
@@ -129,7 +108,7 @@ const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: nu
                     whileHover={{ x: 4 }}
                     className="inline-flex items-center gap-2 text-sm font-body text-primary hover:text-primary/80 transition-colors"
                   >
-                    View project <ArrowUpRight className="w-3.5 h-3.5" />
+                    {t(lang, "projects.view")} <ArrowUpRight className="w-3.5 h-3.5" />
                   </motion.a>
                 </motion.div>
               </div>
@@ -145,9 +124,21 @@ const ProjectsSection = () => {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start 0.4"] });
   const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const { lang } = useLanguage();
+
+  // Parallax counter
+  const counterY = useTransform(scrollYProgress, [0, 1], [40, -20]);
 
   return (
-    <section ref={ref} className="px-6 md:px-16 lg:px-24 py-32">
+    <section ref={ref} className="px-6 md:px-16 lg:px-24 py-32 relative">
+      {/* Background counter */}
+      <motion.span
+        className="absolute right-6 md:right-24 top-24 font-display text-[8rem] md:text-[14rem] font-bold text-foreground/[0.015] select-none pointer-events-none leading-none"
+        style={{ y: counterY }}
+      >
+        04
+      </motion.span>
+
       <div className="flex items-center gap-6 mb-16">
         <motion.p
           initial={{ opacity: 0 }}
@@ -155,14 +146,14 @@ const ProjectsSection = () => {
           viewport={{ once: true }}
           className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-body whitespace-nowrap"
         >
-          Selected Work
+          {t(lang, "projects.heading")}
         </motion.p>
         <motion.div className="h-[1px] bg-primary/30" style={{ width: lineWidth }} />
       </div>
 
       <div className="space-y-0">
-        {projects.map((project, i) => (
-          <ProjectRow key={project.title} project={project} index={i} />
+        {projectKeys.map((k, i) => (
+          <ProjectRow key={k} projectIndex={k} index={i} />
         ))}
         <div className="border-t border-border" />
       </div>
