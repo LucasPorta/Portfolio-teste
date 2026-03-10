@@ -3,10 +3,10 @@ import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 
 const projects = [
-  { title: "Finova", category: "Mobile App", year: "2025" },
-  { title: "Arclight", category: "Web Platform", year: "2024" },
-  { title: "Pulse Health", category: "Dashboard", year: "2024" },
-  { title: "Nomad", category: "Brand Identity", year: "2023" },
+  { title: "Finova", category: "Mobile App", year: "2025", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+  { title: "Arclight", category: "Web Platform", year: "2024", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco." },
+  { title: "Pulse Health", category: "Dashboard", year: "2024", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit." },
+  { title: "Nomad", category: "Brand Identity", year: "2023", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa." },
 ];
 
 const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: number }) => {
