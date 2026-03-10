@@ -21,9 +21,12 @@ const ProjectRow = ({ project, index }: { project: typeof projects[0]; index: nu
     >
       <div className="flex items-baseline gap-4 md:gap-8">
         <span className="text-muted-foreground text-xs font-body tabular-nums">0{index + 1}</span>
-        <h3 className="font-display text-2xl md:text-4xl lg:text-5xl font-light group-hover:text-primary transition-colors duration-300">
-          {project.title}
-        </h3>
+        <div>
+          <h3 className="font-display text-2xl md:text-4xl lg:text-5xl font-light group-hover:text-primary transition-colors duration-300">
+            {project.title}
+          </h3>
+          <p className="text-muted-foreground text-xs md:text-sm font-body mt-2 max-w-md leading-relaxed">{project.description}</p>
+        </div>
       </div>
       <div className="flex items-center gap-6 md:gap-12">
         <span className="text-muted-foreground text-sm font-body hidden md:block">{project.category}</span>

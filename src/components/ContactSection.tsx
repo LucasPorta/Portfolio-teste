@@ -11,8 +11,11 @@ const ContactSection = () => {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="max-w-3xl"
       >
-        <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-body mb-12">
+        <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-body mb-4">
           Get in touch
+        </p>
+        <p className="text-muted-foreground font-body text-sm leading-relaxed mb-12 max-w-lg">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
 
         <motion.a
