@@ -41,7 +41,7 @@ const ContactSection = () => {
           whileHover={{ x: 8 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          hello@designer.com
+          contato@lucasporta.com
           <motion.span
             initial={{ opacity: 0, x: -10 }}
             whileHover={{ opacity: 1, x: 0 }}
@@ -60,7 +60,7 @@ const ContactSection = () => {
       >
         <span>{t(lang, "contact.copyright")}</span>
         <div className="flex gap-8">
-          {["Dribbble", "LinkedIn", "Twitter"].map((link, i) => (
+          {["LinkedIn"].map((link, i) => (
             <motion.a
               key={link}
               href="#"

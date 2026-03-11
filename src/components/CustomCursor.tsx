@@ -28,7 +28,7 @@ const CustomCursor = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-5 h-5 rounded-full border border-primary/60 pointer-events-none z-[999] mix-blend-difference hidden md:block"
+      className="fixed top-0 left-0 w-3 h-3 rounded-full border border-[#B2B2B2]/40 pointer-events-none z-[999] mix-blend-difference hidden md:block"
       style={{ x, y, translateX: "-50%", translateY: "-50%" }}
       animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0 }}
       transition={{ duration: 0.15 }}

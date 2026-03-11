@@ -15,7 +15,7 @@ const letterVariants = {
 };
 
 const AnimatedWord = ({ text, startIndex }: { text: string; startIndex: number }) => (
-  <span className="inline-block overflow-hidden" style={{ perspective: "800px" }}>
+  <span className="inline-block" style={{ perspective: "800px" }}>
     <AnimatePresence mode="wait">
       {text.split("").map((char, i) => (
         <motion.span
@@ -65,7 +65,7 @@ const HeroSection = () => {
   useEffect(() => {
     const handleMouse = (e: MouseEvent) => {
       mouseX.set((e.clientX - window.innerWidth / 2) * 0.02);
-      mouseY.set((e.clientY - window.innerHeight / 2) * 0.02);
+      mouseY.set((e.clientY - window.innerHeight / 2) * 0.06);
     };
     window.addEventListener("mousemove", handleMouse);
     return () => window.removeEventListener("mousemove", handleMouse);
@@ -75,24 +75,24 @@ const HeroSection = () => {
     <section ref={ref} className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24 relative overflow-hidden">
       {/* Animated orbs */}
       <FloatingOrb
-        className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/8 blur-[120px] pointer-events-none"
+        className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/80 blur-[120px] pointer-events-none"
         delay={0}
         duration={6}
       />
       <FloatingOrb
-        className="absolute bottom-1/3 left-[15%] w-64 h-64 rounded-full bg-primary/5 blur-[100px] pointer-events-none"
+        className="absolute bottom-1/3 left-[15%] w-64 h-64 rounded-full bg-primary/40 blur-[100px] pointer-events-none"
         delay={2}
         duration={8}
       />
       <FloatingOrb
-        className="absolute top-[60%] right-[10%] w-48 h-48 rounded-full bg-accent/4 blur-[80px] pointer-events-none"
+        className="absolute top-[60%] right-[10%] w-48 h-48 rounded-full bg-accent/60 blur-[80px] pointer-events-none"
         delay={4}
         duration={10}
       />
 
       {/* Grid lines background */}
       <motion.div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 border border-border pointer-events-none"
         style={{ opacity: useTransform(scrollYProgress, [0, 0.3], [0.03, 0]) }}
       >
         {[...Array(6)].map((_, i) => (
@@ -135,14 +135,14 @@ const HeroSection = () => {
         <AnimatePresence mode="wait">
           <motion.h1
             key={lang}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-[0.95] tracking-tight max-w-4xl"
-          >
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-heavy max-w-3xl tracking-tight"
+          > 
+            <span className={lang === "en" ? "text-muted-foreground" : "text-primary"}>
             <AnimatedWord text={t(lang, "hero.line1")} startIndex={0} />
-            <br />
-            <span className="text-gradient-accent font-medium">
-              <AnimatedWord text={t(lang, "hero.line2")} startIndex={16} />
             </span>
-            <br />
+            <span className={lang === "pt" ? "text-muted-foreground" : "text-primary"}>
+            <AnimatedWord text={t(lang, "hero.line2")} startIndex={14} />
+            </span>
             <AnimatedWord text={t(lang, "hero.line3")} startIndex={27} />
           </motion.h1>
         </AnimatePresence>
@@ -171,8 +171,8 @@ const HeroSection = () => {
 
       {/* Horizontal scroll-driven line at bottom */}
       <motion.div
-        className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-primary/60 to-transparent"
-        style={{ width: useTransform(scrollYProgress, [0, 0.3], ["0%", "100%"]) }}
+        className="absolute bottom-0 left-0 h-[0.8px] bg-gradient-to-r from-primary/20 to-transparent"
+        style={{ width: useTransform(scrollYProgress, [0, 0.1], ["0%", "100%"]) }}
       />
     </section>
   );

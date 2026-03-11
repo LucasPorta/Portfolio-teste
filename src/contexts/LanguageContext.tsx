@@ -28,8 +28,9 @@ export const t = (lang: Lang, key: string): string => {
 const translations: Record<Lang, Record<string, string>> = {
   en: {
     // Navbar
-    "nav.title": "Portfolio",
+    "nav.title": "LUCAS PORTA",
     "nav.contact": "Contact",
+    "nav.cv": "Resume",
 
     // Hero
     "hero.subtitle": "UX / UI Designer",
@@ -43,7 +44,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "projects.role": "Role",
     "projects.tools": "Tools",
     "projects.view": "View project",
-    "project.1.title": "Finova",
+    "project.1.title": "Zello",
     "project.1.category": "Mobile App",
     "project.1.description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "project.1.details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -73,26 +74,27 @@ const translations: Record<Lang, Record<string, string>> = {
     // Contact
     "contact.heading": "Get in touch",
     "contact.body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "contact.copyright": "© 2025",
+    "contact.copyright": "© 2026",
   },
   pt: {
     // Navbar
-    "nav.title": "Portfólio",
+    "nav.title": "LUCAS PORTA",
     "nav.contact": "Contato",
+    "nav.cv": "Currículo",
 
     // Hero
     "hero.subtitle": "Designer UX / UI",
-    "hero.line1": "Criando experiências",
+    "hero.line1": "Experiências",
     "hero.line2": "digitais",
     "hero.line3": "que importam.",
     "hero.scroll": "Deslize para explorar",
 
     // Projects
-    "projects.heading": "Trabalhos Selecionados",
+    "projects.heading": "Trabalhos em destaque",
     "projects.role": "Função",
     "projects.tools": "Ferramentas",
     "projects.view": "Ver projeto",
-    "project.1.title": "Finova",
+    "project.1.title": "Zello",
     "project.1.category": "Aplicativo Móvel",
     "project.1.description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "project.1.details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -122,6 +124,6 @@ const translations: Record<Lang, Record<string, string>> = {
     // Contact
     "contact.heading": "Entre em contato",
     "contact.body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "contact.copyright": "© 2025",
+    "contact.copyright": "© 2026",
   },
 };
