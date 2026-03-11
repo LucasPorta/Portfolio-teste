@@ -95,7 +95,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "projects.tools": "Ferramentas",
     "projects.view": "Ver projeto",
     "project.1.title": "Zello",
-    "project.1.category": "Aplicativo Móvel",
+    "project.1.category": "Aplicação Mobile",
     "project.1.description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "project.1.details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     "project.1.role": "Designer Líder",
