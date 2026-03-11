@@ -14,8 +14,21 @@ const projectTools = [
   ["Illustrator", "Figma", "Photoshop"],
   ["Illustrator", "Figma", "Photoshop"],
   ["Illustrator", "Figma", "Photoshop"],
-
 ];
+  const projectImages = [
+  "public/images/project-1.png",
+  "public/images/project-2.png",
+  "public/images/project-3.png",
+  "public/images/project-4.png",
+  "public/images/project-5.png",
+  "public/images/project-6.png",
+  "public/images/project-7.png",
+  "public/images/project-8.png",
+  "public/images/project-9.png",
+];
+
+
+
 const projectYears = ["2025", "2024", "2024", "2023", "2023"];
 
 const ProjectRow = ({ projectIndex, index }: { projectIndex: number; index: number }) => {
@@ -26,6 +39,7 @@ const ProjectRow = ({ projectIndex, index }: { projectIndex: number; index: numb
   const { scrollYProgress } = useScroll({ target: rowRef, offset: ["start end", "start 0.7"] });
   const x = useTransform(scrollYProgress, [0, 1], [-60, 0]);
   const rowOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   return (
     <motion.div
@@ -81,9 +95,22 @@ const ProjectRow = ({ projectIndex, index }: { projectIndex: number; index: numb
                   transition={{ delay: 0.1, duration: 0.4 }}
                   className="md:col-span-2"
                 >
+                  <div className="space-y-4">
+                    <button
+                      type="button"
+                      onClick={() => setIsImageOpen(true)}
+                      className="w-full text-left group/image"
+                    >
+                    <img
+                      src={projectImages[index]}
+                      alt={t(lang, `project.${k}.title`)}
+                      className="w-full h-auto rounded-[8px] object-cover border border-border transition-transform duration-300 group-hover/image:scale-[1.01]"
+                    />
+                  </button>
                   <p className="text-foreground/80 font-body text-sm leading-relaxed">
                     {t(lang, `project.${k}.details`)}
                   </p>
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -122,6 +149,29 @@ const ProjectRow = ({ projectIndex, index }: { projectIndex: number; index: numb
           </motion.div>
         )}
       </AnimatePresence>
+      
+       <AnimatePresence>
+        {isImageOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsImageOpen(false)}
+          >
+          <motion.img
+            src={projectImages[index]}
+            alt={t(lang, `project.${k}.title`)}
+            className="max-w-full max-h-[90vh] rounded-[8px] object-contain shadow-2xl"
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.92, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </motion.div>
+  )}
+</AnimatePresence>
     </motion.div>
   );
 };
