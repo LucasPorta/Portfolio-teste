@@ -35,7 +35,7 @@ const ContactSection = () => {
         </motion.p>
 
         <motion.a
-          href="mailto:hello@designer.com"
+          href="mailto:contato@lucasporta.com"
           className="font-display text-3xl md:text-5xl lg:text-6xl font-light group inline-flex items-center gap-4 hover:text-primary transition-colors duration-300"
           style={{ y: emailY, opacity: emailOpacity }}
           whileHover={{ x: 8 }}
@@ -60,6 +60,20 @@ const ContactSection = () => {
       >
         <span>{t(lang, "contact.copyright")}</span>
         <div className="flex gap-8">
+          {["Currículo"].map((link, i) => (
+            <motion.a
+              key={link}
+              href="#"
+              className="hover:text-foreground transition-colors relative"
+              whileHover={{ y: -2 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 + i * 0.1 }}
+            >
+              {link}
+            </motion.a>
+          ))}
           {["LinkedIn"].map((link, i) => (
             <motion.a
               key={link}
@@ -75,6 +89,7 @@ const ContactSection = () => {
             </motion.a>
           ))}
         </div>
+        
       </motion.div>
     </section>
   );

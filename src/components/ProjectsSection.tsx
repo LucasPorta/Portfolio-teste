@@ -3,14 +3,20 @@ import { ArrowUpRight, Plus, Minus } from "lucide-react";
 import { useRef, useState } from "react";
 import { useLanguage, t } from "@/contexts/LanguageContext";
 
-const projectKeys = [1, 2, 3, 4];
+const projectKeys = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // Assuming you have 9 projects, adjust as needed
 const projectTools = [
   ["Figma", "Protopie", "After Effects"],
   ["Figma", "Framer", "Notion"],
   ["Sketch", "Principle", "Miro"],
   ["Illustrator", "Figma", "Photoshop"],
+  ["Illustrator", "Figma", "Photoshop"],
+  ["Illustrator", "Figma", "Photoshop"],
+  ["Illustrator", "Figma", "Photoshop"],
+  ["Illustrator", "Figma", "Photoshop"],
+  ["Illustrator", "Figma", "Photoshop"],
+
 ];
-const projectYears = ["2025", "2024", "2024", "2023"];
+const projectYears = ["2025", "2024", "2024", "2023", "2023"];
 
 const ProjectRow = ({ projectIndex, index }: { projectIndex: number; index: number }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,7 +112,7 @@ const ProjectRow = ({ projectIndex, index }: { projectIndex: number; index: numb
                   <motion.a
                     href="#"
                     whileHover={{ x: 4 }}
-                    className="inline-flex items-center gap-2 text-sm font-body text-primary hover:text-primary/80 transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-body text-primary hover:text-primary/80 transition-colors opacity-0 group-hover:opacity-0" //Mudar aqui
                   >
                     {t(lang, "projects.view")} <ArrowUpRight className="w-3.5 h-3.5" />
                   </motion.a>
